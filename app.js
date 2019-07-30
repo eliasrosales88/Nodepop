@@ -29,6 +29,14 @@ require('./lib/connectMongoose');
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 
+
+/*  
+ * API
+ */
+
+app.use('/apiv1/adverts', require('./routes/apiv1/adverts'));
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
