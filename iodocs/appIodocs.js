@@ -115,18 +115,18 @@ try {
     process.exit(1);
 }
 
-var app = module.exports = express();
+var appIodocs = module.exports = express();
 
-app.configure(function() {
-    app.set('views', __dirname + '/views');
-    app.set('view engine', 'jade');
-    app.use(express.logger());
-    app.use(express.bodyParser());
-    app.use(express.methodOverride());
-    app.use(express.cookieParser());
+appIodocs.configure(function() {
+    appIodocs.set('views', __dirname + '/views');
+    appIodocs.set('view engine', 'jade');
+    appIodocs.use(express.logger());
+    appIodocs.use(express.bodyParser());
+    appIodocs.use(express.methodOverride());
+    appIodocs.use(express.cookieParser());
 
 if(config.redis) {
-    app.use(express.session({
+    appIodocs.use(express.session({
         secret: config.sessionSecret,
         store:  new RedisStore({
             'host':   config.redis.host,
@@ -137,7 +137,7 @@ if(config.redis) {
         })
     }));
 } else {
-    app.use(express.session({
+    appIodocs.use(express.session({
         secret: config.sessionSecret
     }));
 } 
@@ -146,25 +146,25 @@ if(config.redis) {
     // Global basic authentication on server (applied if configured)
     //
     if (checkObjVal(config,'basicAuth').exists && checkObjVal(config, 'basicAuth', 'password').exists) {
-        app.use(express.basicAuth(function(user, pass, callback) {
+        appIodocs.use(express.basicAuth(function(user, pass, callback) {
             var result = (user === config.basicAuth.username && pass === config.basicAuth.password);
             callback(null /* error */, result);
         }));
     }
 
-    app.use(checkPathForAPI);
-    app.use(dynamicHelpers);
-    app.use(app.router);
-    app.use(express.static(__dirname + '/public'));
-    app.use('/data', express.static(config.apiConfigDir));
+    appIodocs.use(checkPathForAPI);
+    appIodocs.use(dynamicHelpers);
+    appIodocs.use(appIodocs.router);
+    appIodocs.use(express.static(__dirname + '/public'));
+    appIodocs.use('/data', express.static(config.apiConfigDir));
 });
 
-app.configure('development', function() {
-    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+appIodocs.configure('development', function() {
+    appIodocs.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
-app.configure('production', function() {
-    app.use(express.errorHandler());
+appIodocs.configure('production', function() {
+    appIodocs.use(express.errorHandler());
 });
 
 //
@@ -1122,7 +1122,7 @@ function checkObjVal(obj /*, val, level1, level2, ... levelN*/) {
     }
 }
 
-// Replaces deprecated app.dynamicHelpers that were dropped in Express 3.x
+// Replaces deprecated appIodocs.dynamicHelpers that were dropped in Express 3.x
 // Passes variables to the view
 function dynamicHelpers(req, res, next) {
     if (req.params.api) {
@@ -1144,14 +1144,14 @@ function dynamicHelpers(req, res, next) {
 //
 // Routes
 //
-app.get('/', function(req, res) {
+appIodocs.get('/', function(req, res) {
     res.render('listAPIs', {
         title: config.title
     });
 });
 
 // Process the API request
-app.post('/processReq', processRequest, function(req, res) {
+appIodocs.post('/processReq', processRequest, function(req, res) {
     var result = {
         headers: req.resultHeaders,
         response: req.result,
@@ -1164,35 +1164,35 @@ app.post('/processReq', processRequest, function(req, res) {
 });
 
 // Just auth
-app.all('/auth', oauth1);
-app.all('/auth2', oauth2);
+appIodocs.all('/auth', oauth1);
+appIodocs.all('/auth2', oauth2);
 
 
 // OAuth callback page, closes the window immediately after storing access token/secret
-app.get('/authSuccess/:api', oauth1Success, function(req, res) {
+appIodocs.get('/authSuccess/:api', oauth1Success, function(req, res) {
     res.render('authSuccess', {
         title: 'OAuth 1.0 Successful'
     });
 });
 
 // OAuth callback page, closes the window immediately after storing access token/secret
-app.get('/oauth2Success/:api', oauth2Success, function(req, res) {
+appIodocs.get('/oauth2Success/:api', oauth2Success, function(req, res) {
     res.render('authSuccess', {
         title: 'OAuth 2.0 Successful'
     });
 });
 
-app.post('/upload', function(req, res) {
+appIodocs.post('/upload', function(req, res) {
   res.redirect('back');
 });
 
 // API shortname, all lowercase
-app.get('/:api([^\.]+)', function(req, res) {
+appIodocs.get('/:api([^\.]+)', function(req, res) {
     req.params.api=req.params.api.replace(/\/$/,'');
     res.render('api');
 });
 
-// Only listen on $ node app.js
+// Only listen on $ node appIodocs.js
 
 if (!module.parent) {
 
@@ -1200,12 +1200,12 @@ if (!module.parent) {
         var args = [config.socket];
         console.log("Express server starting on UNIX socket %s", args[0]);
         fs.unlink(config.socket, function () {
-          runServer(app, args);
+          runServer(appIodocs, args);
         });
     } else {
         var args = [process.env.PORT || config.port, config.address];
         console.log("Express server starting on %s:%d", args[1], args[0]);
-        runServer(app, args);
+        runServer(appIodocs, args);
     }
 
     function runServer () {
@@ -1261,7 +1261,7 @@ if (!module.parent) {
             console.error("No https key or certificate specified.");
             process.exit(1);
         } else {
-            server = http.createServer(app);
+            server = http.createServer(appIodocs);
             server.listen.apply(server, args);
         }
     }
