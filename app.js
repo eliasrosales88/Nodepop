@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+// var appIodocs = require('./iodocs/appIodocs')
 
 var app = express();
 
@@ -18,10 +19,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 /* 
- *  DDBB connection
+ *  Set DDBB
  */
 
-require('./lib/connectMongoose');
+require('./lib/install_db');
 
 
 

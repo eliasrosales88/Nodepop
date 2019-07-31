@@ -5,9 +5,9 @@ const mongoose = require('mongoose');
 // Schema definition
 const advertSchema = mongoose.Schema({
     title: String,
+    description: String,
     price: Number,
     isSelled: Boolean,
-    isSearched: Boolean,
     picture: String,
     tags: Array
 });
