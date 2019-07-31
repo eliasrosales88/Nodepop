@@ -57,6 +57,16 @@ router.get('/',  async (req, res, next) =>{
         if (isSearched) {
             filter.isSearched = isSearched;
         }
+        
+        if (tags) {
+
+            for (let i = 0; i < tags.length; i++) {
+                
+                 filter.tags = tags[i];
+            }
+        }
+
+
         const adverts = await Advert.list({filter: filter, skip, limit, fields, sort});// si colocamos llaves dentro de list podemos decir que el orden ya no es relevante
         res.json({ success: true, results: adverts });
         
