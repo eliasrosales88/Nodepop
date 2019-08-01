@@ -13,25 +13,12 @@ const Advert = require('../../models/Advert');
  */
 
 router.get('/',  async (req, res, next) =>{
-    
-    // Version con callbacks
-    //Agente.find().then()thenable simula ser una promesa
-    // Agente.find().exec( (err, agentes )=>{
-    //     if (err) {
-    //         next(err); // escalar el error al gestor de errores
-    //         return;
-    //     }
-    //     res.json({ success: true, agentes: agentes })
-    // }) 
-    
-    
-    // Version con promesas y async await    
+  
     try {
 
-        const name = req.query.name;
+        const title = req.query.title;
         const price = req.query.price;
         const isSelled = req.query.isSelled;
-        const isSearched = req.query.isSearched;
         const picture = req.query.picture;
         const tags = req.query.tags;
         const skip = parseInt(req.query.skip);
@@ -41,8 +28,8 @@ router.get('/',  async (req, res, next) =>{
 
         const filter = {};
         
-        if (name) {
-            filter.name = name;
+        if (title) {
+            filter.title = title;
         }
 
         // Check number type 
@@ -54,10 +41,6 @@ router.get('/',  async (req, res, next) =>{
             filter.isSelled = isSelled;
         }
 
-        if (isSearched) {
-            filter.isSearched = isSearched;
-        }
-        
         if (tags) {
 
             for (let i = 0; i < tags.length; i++) {
