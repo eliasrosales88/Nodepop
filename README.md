@@ -14,13 +14,13 @@ After that you need to open a new terminal and execute `./bin/mongo` to run the 
 ---
 # API documentation
 
-**GET** `apiv1/adverts`
+**GET** `apiv1/adverts`  
 Returns all adverts
 
 ---
-**GET** `apiv1/:id`
+**GET** `apiv1/:id`  
 Returns one advert  
-Example
+Example  
 `/apiv1/adverts/5d434b17654a87360c120d19`
 
 ```json
@@ -42,8 +42,8 @@ Example
 ```
 
 ---
-**POST** `apiv1/`
-Creates an advert
+**POST** `apiv1/`  
+Creates an advert  
 >The data comes from the **body** of the resquest and the properties of the Advert object are:
 >
 >* title: String
@@ -53,7 +53,7 @@ Creates an advert
 >* picture: String
 >* tags: Array
 
-Example
+Example  
 ```json
 {
     "success": true,
@@ -72,14 +72,14 @@ Example
 }
 ```
 ---
-**PUT** `apiv1/:id`
-Edit an advert
+**PUT** `apiv1/:id`  
+Edit an advert  
 >The params are passed in the body of the request.
 >
 >
 >
-Example
-`/apiv1/adverts/5d434895654a87360c120cfe`
+Example  
+`/apiv1/adverts/5d434895654a87360c120cfe`  
 ```json
 {
     "success": true,
@@ -99,9 +99,9 @@ Example
 ```
 
 ---
-**DELETE** `apiv1/:id`
-Delete an advert
-Example
+**DELETE** `apiv1/:id`  
+Delete an advert  
+Example  
 `apiv1/adverts/5d434b17654a87360c120d19`
 
 ```json
