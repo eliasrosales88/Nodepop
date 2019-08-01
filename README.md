@@ -19,7 +19,7 @@ Returns all adverts
 
 ---
 **GET** `apiv1/:id`
-Returns one advert
+Returns one advert  
 Example
 `/apiv1/adverts/5d434b17654a87360c120d19`
 
