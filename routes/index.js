@@ -4,10 +4,11 @@ var router = express.Router();
 
 /* GET home page. */
 
-router.get('/:page?', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     // Pagination
     let perPage = 5;
-    let page = req.params.page || 1;
+    let page = req.query.page || 1;
+    console.log('page', page);
     const adverts = await Advert.find({});
 
     try {
@@ -15,7 +16,7 @@ router.get('/:page?', async (req, res, next) => {
         // Query string 
         const title = req.query.title;
         const price = req.query.price;
-        const isSelled = req.query.isSelled;
+        const isSold = req.query.isSold;
         const picture = req.query.picture;
         const tags = req.query.tags;
         const skip = parseInt(req.query.skip)  || (perPage * page) - perPage;
@@ -64,8 +65,8 @@ router.get('/:page?', async (req, res, next) => {
             }
         }
 
-        if (isSelled) {
-            filter.isSelled = isSelled;
+        if (isSold) {
+            filter.isSold = isSold;
         }
 
     

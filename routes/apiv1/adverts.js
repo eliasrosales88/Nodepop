@@ -18,7 +18,7 @@ router.get('/',  async (req, res, next) =>{
 
         const title = req.query.title;
         const price = req.query.price;
-        const isSelled = req.query.isSelled;
+        const isSold = req.query.isSold;
         const picture = req.query.picture;
         const tags = req.query.tags;
         const skip = parseInt(req.query.skip);
@@ -67,8 +67,8 @@ router.get('/',  async (req, res, next) =>{
         }
 
 
-        if (isSelled) {
-            filter.isSelled = isSelled;
+        if (isSold) {
+            filter.isSold = isSold;
         }
 
         if (tags ==='lifestyle' || tags ==='motor' || tags ==='mobile' || tags ==='work' ) {

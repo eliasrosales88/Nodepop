@@ -13,7 +13,7 @@ exports.advert_list = async (req, res, next) => {
         // Query string 
         const title = req.query.title;
         const price = req.query.price;
-        const isSelled = req.query.isSelled;
+        const isSold = req.query.isSold;
         const picture = req.query.picture;
         const tags = req.query.tags;
         const skip = parseInt(req.query.skip)  || (perPage * page) - perPage;
@@ -32,8 +32,8 @@ exports.advert_list = async (req, res, next) => {
             filter.price = price;
         }
 
-        if (isSelled) {
-            filter.isSelled = isSelled;
+        if (isSold) {
+            filter.isSold = isSold;
         }
 
     

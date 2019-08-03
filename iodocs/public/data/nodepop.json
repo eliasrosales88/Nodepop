@@ -37,8 +37,8 @@
 					"description": "The price of the advert",
 					"default": ""
                 },
-                "isSelled": {
-					"title": "isSelled",
+                "isSold": {
+					"title": "isSold",
 					"required":false,
 					"type":"boolean",
 					"description": "If it is 'For Sale' will be set to true",

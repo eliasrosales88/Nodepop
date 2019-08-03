@@ -34,13 +34,13 @@ For windows use:
 * Range -> `price= 100-5000` or  
 * Less than or equal -> `price=-3500` or  
 * Greater than or equal -> `price=100-`  
-* `isSelled=true` | `isSelled=false`  
+* `isSold=true` | `isSold=false`  
 * Any existing name in the database with the extension -> `picture=photo.jpg`  
 * Multiple tags -> `tags=`  
 * Skip -> `skip=5`  
 * `limit=3`  
 * `sort=price`    
-* `sort=isSelled`    
+* `sort=isSold`    
 
 ---
 # API documentation  
@@ -67,7 +67,7 @@ Example
             "title": "Road trip",
             "description": "Road trip with random people",
             "price": 444,
-            "isSelled": true,
+            "isSold": true,
             "picture": "photo.jpg",
             "__v": 0
         }
@@ -82,7 +82,7 @@ Creates an advert
 >* title: String
 >* description: String
 >* price: Number
->* isSelled: Boolean
+>* isSold: Boolean
 >* picture: String
 >* tags: Array
 
@@ -98,7 +98,7 @@ Example
         "title": "Road trip",
         "description": "Road trip with random people",
         "price": 444,
-        "isSelled": true,
+        "isSold": true,
         "picture": "photo.jpg",
         "__v": 0
     }
@@ -124,7 +124,7 @@ Example
         "title": "Title changed with put",
         "description": "White Ford fiesta",
         "price": 2000,
-        "isSelled": true,
+        "isSold": true,
         "picture": "ford-white.jpg",
         "__v": 0
     }
