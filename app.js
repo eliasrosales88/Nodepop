@@ -32,8 +32,8 @@ app.use('/users', require('./routes/users'));
 
 
 /*  
-* API
-*/
+ * API
+ */
 
 app.use('/apiv1/doc', require('./routes/apiv1/doc'));
 app.use('/apiv1/adverts', require('./routes/apiv1/adverts'));

@@ -2,6 +2,7 @@ extends layout
 block content
   h1=apiInfo.name
   .apiName(id=apiName)
+  a(href="http://localhost:3000") Go back to Home
   script.
     count = 0;
   - if (apiInfo.auth && apiInfo.auth.oauth && apiInfo.auth.oauth.version && apiInfo.auth.oauth.version == "1.0" && apiInfo.auth.oauth.type =='three-legged')
