@@ -67,7 +67,13 @@ router.get('/',  async (req, res, next) =>{
 router.get('/:id', async (req, res, next) =>{
     try {
         const _id = req.params.id;
-        const advert = await Advert.findById(_id).exec();//exec() sobraria ya que hay un await por delante
+        let advert;
+        if (_id.length === 24 ) {
+            advert = await Advert.findById(_id).exec();//exec() sobraria ya que hay un await por delante
+        }else{
+            res.status(404).json({ success: false });// con 404 bastaria
+            return;
+        }
 
         if (!advert) {
             res.status(404).json({ success: false });// con 404 bastaria
@@ -108,9 +114,14 @@ router.put('/:id', async (req, res, next) => {
     try {
         const _id = req.params.id;
         const data = req.body;
-
-        const advertSaved =  await Advert.findOneAndUpdate({_id: _id}, data, { new: true}).exec(); // new: true --> hace que retorne la version del agente guardada en la base de datos
+        let advertSaved;
+        if (_id.length === 24 ) {
+        advertSaved =  await Advert.findOneAndUpdate({_id: _id}, data, { new: true}).exec(); // new: true --> hace que retorne la version del agente guardada en la base de datos
         
+        } else {
+            res.status(404).json({ success: false });
+            return;
+        }
         res.json({ success: true, result: advertSaved });
     } catch (err) {
         next(err);

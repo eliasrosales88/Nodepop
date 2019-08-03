@@ -2,51 +2,128 @@
     "name": "NodePop",
     "description": "NodePop store API",
     "protocol": "rest",
-    "basePath": "http://api.lowercase.sample.com",
-    "publicPath": "/v1",
+    "basePath": "http://localhost:3000",
+    "publicPath": "/apiv1",
     "auth": {
         "key": {
             "param": "key"
         }
     },
     "headers": {
-        "Accept": "application/json",
-        "Foo": "bar"
+        "Accept": "application/json"
+    },
+    "schemas": {
+        "postAdvert" :{
+            "type": "object",
+			"properties": {
+				"title": {
+					"title": "Title",
+					"required":false,
+					"type":"string",
+					"description": "Title of the advert",
+					"default": ""
+				},
+				"description": {
+					"title": "Description",
+					"required":false,
+					"type":"string",
+					"description": "The description of the advert",
+					"default": ""
+                },
+                "price": {
+					"title": "Price",
+					"required":false,
+					"type":"number",
+					"description": "The price of the advert",
+					"default": ""
+                },
+                "isSelled": {
+					"title": "isSelled",
+					"required":false,
+					"type":"boolean",
+					"description": "If it is 'For Sale' will be set to true",
+					"default": "true"
+                },
+                "picture": {
+					"title": "Picture",
+					"required":false,
+					"type":"string",
+					"description": "The photo of the picture. You need to add the extension of the photo. (i.e photo.jpg)",
+					"default": "photo.jpg"
+                },
+                "tags": {
+					"type": "array",
+					"items": {
+						"title": "",
+						"default": "",
+						"type": "string",
+						"description": "An array of tags",
+						"required": false
+					}
+				}
+			}
+		}
     },
     "resources": {
         "Root": {
             "methods": {
-                "MethodA1": {
-                    "name": "Method A1",
-                    "path": "/a1/grab",
+                "MethodAllAdverts": {
+                    "name": "All adverts",
+                    "path": "/adverts",
                     "httpMethod": "GET",
-                    "description": "Grabs information from the A1 data set.",
-                    "parameters": {
-                        "param1": {
-                            "type": "string",
-                            "required": true,
-                            "default": "",
-                            "description": "Description of the first parameter."
-                        }
-                    }
+                    "description": "Returns a list of all adverts."
                 },
-                "MethodA1User": {
-                    "name": "Method A1 User",
-                    "path": "/a1/grab/{userId}",
+                "MethodOneAdvert": {
+                    "name": "One advert",
+                    "path": "/adverts/{userId}",
                     "httpMethod": "GET",
-                    "description": "Grabs information from the A1 data set for a specific user",
+                    "description": "Returns one advert",
                     "parameters": {
-                        "param1": {
-                            "type": "string",
-                            "required": true,
-                            "default": "",
-                            "description": "Description of the first parameter."
-                        },
                         "userId": {
                             "type": "string",
                             "required": true,
                             "default": "",
                             "description": "The userId parameter that is in the URI."
+                        }
+                    }
+                },
+                "MethodPostOneAdvert": {
+                    "name": "One advert",
+                    "path": "/adverts/",
+                    "httpMethod": "POST",
+                    "description": "Create one advert in the database",
+                    "request": {
+						"$ref": "postAdvert"
+					}
+                },
+                "MethodPutOneAdvert": {
+                    "name": "One advert",
+                    "path": "/adverts/{userId}",
+                    "parameters":{
+                        "userId": {
+                            "type": "string",
+                            "required": true,
+                            "default": "",
+                            "description": "The userId to edit."
+                        }
+                    },
+                    "httpMethod": "PUT",
+                    "description": "Edit one advert in the database",
+                    "request": {
+						"$ref": "postAdvert"
+					}
+                },
+                "MethodDeleteOneAdvert": {
+                    "name": "One advert",
+                    "path": "/adverts/{userId}",
+                    "description": "Delete one advert in the database",
+                    "httpMethod": "DELETE",
+                    "parameters":{
+                        "userId": {
+                            "type": "string",
+                            "required": true,
+                            "default": "",
+                            "description": "The userId to delete."
                         }
                     }
                 }

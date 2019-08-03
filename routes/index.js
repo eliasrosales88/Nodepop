@@ -52,7 +52,7 @@ router.get('/:page?', async (req, res, next) => {
 
         const advertsFilter = await Advert.list({ filter: filter, skip, limit, fields, sort });
         
-        console.log(advertsFilter);
+        // console.log(advertsFilter);
         
         // Set locals to render
         if (advertsFilter.length === 0) {
