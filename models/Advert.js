@@ -22,6 +22,15 @@ advertSchema.statics.list = function({filter, skip, limit, fields, sort}){
     return query.exec();
 }
 
+advertSchema.statics.tagsList = function(){
+    const queryTags = Advert.find().distinct('tags', function(error, tags) {
+        
+    });
+    
+    return queryTags.exec();
+}
+
+
 
 // Creating Advert model
 const Advert = mongoose.model('Advert', advertSchema);

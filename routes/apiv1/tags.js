@@ -80,7 +80,7 @@ router.get('/',  async (req, res, next) =>{
         }
 
 
-        const adverts = await Advert.list({filter: filter, skip, limit, fields, sort});// si colocamos llaves dentro de list podemos decir que el orden ya no es relevante
+        const adverts = await Advert.tagsList({filter: filter});// si colocamos llaves dentro de list podemos decir que el orden ya no es relevante
         res.json({ success: true, results: adverts });
         
     } catch (err) {

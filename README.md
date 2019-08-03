@@ -28,19 +28,19 @@ For windows use:
 `npm run devwin`  
 
 ## Sorting data  
-After server is running, to sort data you have the next filters:  
-Any text -> `title=Any text`   
-Exact price -> `price= 5000` or  
-Range -> `price= 100-5000` or  
-Less than or equal -> `price=-3500` or  
-Greater than or equal -> `price=100-`  
-`isSelled=true` | `isSelled=false`  
-Any existing name in the database with the extension -> `picture=photo.jpg`  
-Multiple tags -> `tags=`  
-Skip -> `skip=5`  
-`limit=3`  
-`sort=price`    
-`sort=isSelled`    
+* After server is running, to sort data you have the next filters:  
+* Any text -> `title=Any text`   
+* Exact price -> `price= 5000` or  
+* Range -> `price= 100-5000` or  
+* Less than or equal -> `price=-3500` or  
+* Greater than or equal -> `price=100-`  
+* `isSelled=true` | `isSelled=false`  
+* Any existing name in the database with the extension -> `picture=photo.jpg`  
+* Multiple tags -> `tags=`  
+* Skip -> `skip=5`  
+* `limit=3`  
+* `sort=price`    
+* `sort=isSelled`    
 
 ---
 # API documentation  
@@ -140,6 +140,21 @@ Example
 ```json
 {
     "success": true
+}
+```
+---  
+**GET** `apiv1/TAGS`  
+Returns a list of all tags
+
+```json
+{
+    "success": true,
+    "results": [
+        "motor",
+        "mobile",
+        "lifestyle",
+        "work"
+    ]
 }
 ```
 

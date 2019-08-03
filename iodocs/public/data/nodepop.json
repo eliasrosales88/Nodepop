@@ -126,6 +126,12 @@
                             "description": "The userId to delete."
                         }
                     }
+                },
+                "MethodAllTags": {
+                    "name": "List of tags",
+                    "path": "/tags",
+                    "httpMethod": "GET",
+                    "description": "Returns a list of all tags."
                 }
             }
         }
