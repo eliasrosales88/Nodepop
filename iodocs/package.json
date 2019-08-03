@@ -43,6 +43,6 @@
   },
   "scripts": {
     "start": "node_modules/.bin/supervisor -e 'js|json' appIodocs",
-    "startwin": "supervisor -e 'js' app"
+    "startwin": "supervisor -e 'js' appIodocs"
   }
 }

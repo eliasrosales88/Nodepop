@@ -1,7 +1,15 @@
 # Nodepop
 **Nodejs API project**
 
-This documentation is intended to explain how the API works, to set up the database of the project and run the webapp on localhost. 
+This documentation is intended to explain how the API works, to install the required dependencies, to set up the database of the project and run the webapp on localhost.
+
+This API uses iodocs for live documentation and is required to have a redis server running in your machine.
+
+## Installing dependencies 
+To install the required dependencies you need to run two commands:  
+
+1. `npm install`
+2. ` npm run iodocsinstall`
 
 ## Setting up the DDBB 
 To set the database you need to have installed MongoDB.
@@ -9,16 +17,26 @@ To set the database you need to have installed MongoDB.
 In mongo folder you need to open de terminal and run:
 `./bin/mongod --dbpath ./data/db --directoryperdb`
 
-After that you need to open a new terminal and execute `./bin/mongo` to run the mongo client
+Optionally: You can open a new terminal and execute `./bin/mongo` to run the mongo client
+
+**To run the project** In the root folder of the project you need to run:  
+
+For linux and Mac use:  
+`npm run dev`  
+
+For windows use:  
+`npm run devwin`
 
 ---
-# API documentation
+# API documentation  
+*To get the best of the API documentation you can go to the next url to have live documentation provided by iodocs* `http://localhost:3000/apiv1/doc` this will redirect to port **3001**  
+To go back you can go to the root of 3001 and you will be redirected.
 
 **GET** `apiv1/adverts`  
-Returns all adverts
+Returns a list of all adverts
 
 ---
-**GET** `apiv1/:id`  
+**GET** `apiv1/adverts/:id`  
 Returns one advert  
 Example  
 `/apiv1/adverts/5d434b17654a87360c120d19`

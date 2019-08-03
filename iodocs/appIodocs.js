@@ -1145,9 +1145,7 @@ function dynamicHelpers(req, res, next) {
 // Routes
 //
 appIodocs.get('/', function(req, res) {
-    res.render('listAPIs', {
-        title: config.title
-    });
+    res.redirect('http://localhost:3000/'); // absoluta
 });
 
 // Process the API request
@@ -1193,8 +1191,9 @@ appIodocs.get('/:api([^\.]+)', function(req, res) {
 });
 
 // Only listen on $ node appIodocs.js
+console.log('parent?',!module.parent);
 
-if (!module.parent) {
+if (!module.parent == false) {
 
     if (typeof config.socket != "undefined") {
         var args = [config.socket];

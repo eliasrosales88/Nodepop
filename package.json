@@ -4,8 +4,11 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www && ./iodocs/node_modules/.bin/supervisor -e 'js|json' appIodocs",
+    "startwin": "./iodocs/supervisor -e 'js' appIodocs",
     "dev": "cross-env DEBUG=nodepop:* nodemon",
-    "prod": "cross-env NODE_DEV=production npm start"
+    "devwin": "cross-env DEBUG=nodepop:* nodemon startwin",
+    "prod": "cross-env NODE_DEV=production npm start",
+    "iodocsinstall": "cd iodocs && npm install"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
