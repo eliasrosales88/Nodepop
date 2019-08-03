@@ -26,16 +26,46 @@ router.get('/',  async (req, res, next) =>{
         const fields = req.query.fields;
         const sort = req.query.sort;
 
+        let gte;
+        let lte;
+        let range;
+
         const filter = {};
-        
+
         if (title) {
-            filter.title = title;
+            filter.title = new RegExp('^' + req.query.title, "i");
+        }
+        if (typeof price !== 'undefined') {
+            if (price.indexOf('-') != -1) {
+                // GREATER THAN OR EQUAL GTE
+                if ( price.indexOf('-') === price.length - 1 ) {
+                    range = price.split('-');
+                    gte = range[0];
+                    
+                    filter.price = { $gte: gte }
+                
+                // LOWER THAN OR EQUAL LTE
+                }else if ( price.indexOf('-') === 0 ) {
+                    range = price.split('-');
+                    lte = range[1];
+                    
+                    filter.price = { $lte: lte }
+                
+                // BETWEEN RANGE     
+                } else {
+                    range = price.split('-');
+                    gte = range[0];
+                    lte = range[1];
+                    
+                    filter.price = { $gte: gte, $lte: lte }
+                }
+                
+            } else {
+            
+                    filter.price = price;
+            }
         }
 
-        // Check number type 
-        if (typeof price !== 'undefined') {
-            filter.price = price;
-        }
 
         if (isSelled) {
             filter.isSelled = isSelled;
