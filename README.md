@@ -143,7 +143,7 @@ Example
 }
 ```
 ---  
-**GET** `apiv1/TAGS`  
+**GET** `apiv1/tags`  
 Returns a list of all tags
 
 ```json
